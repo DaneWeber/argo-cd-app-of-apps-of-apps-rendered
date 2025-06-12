@@ -187,7 +187,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: cicd-gitops
+    namespace: cicd-gitops-prod
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
