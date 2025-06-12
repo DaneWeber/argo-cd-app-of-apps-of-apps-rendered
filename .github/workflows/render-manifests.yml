@@ -33,7 +33,7 @@ jobs:
           pushd upstream
           mv root-application.yaml ../
           ./render.sh
-          mv -r rendered-manifests/ ../
+          mv rendered-manifests ../
           popd
           rm -rf upstream
 
