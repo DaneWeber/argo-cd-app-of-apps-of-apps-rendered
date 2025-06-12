@@ -30,9 +30,14 @@ jobs:
       - name: Render Helm templates
         run: |
           rm -rf rendered-manifests
+          echo "Root of repo:"
+          ls
           cd upstream
+          pwd
+          echo "Upstream:"
           ls
           cp root-application.yaml ../
+          echo "Root of repo:"
           ls ../
           ./render.sh
           cp -r rendered-manifests/ ../
@@ -46,7 +51,6 @@ jobs:
           body: >
             This PR updates the rendered Argo CD manifests
             based on upstream commit ${{ github.event.client_payload.sha }}.
-          add-paths: rendered-manifests
 
       - name: Upload rendered manifests as artifact
         uses: actions/upload-artifact@v4
