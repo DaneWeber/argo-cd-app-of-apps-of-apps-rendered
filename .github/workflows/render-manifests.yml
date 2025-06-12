@@ -30,17 +30,12 @@ jobs:
       - name: Render Helm templates
         run: |
           rm -rf rendered-manifests
-          echo "Root of repo:"
-          ls
-          cd upstream
-          pwd
-          echo "Upstream:"
-          ls
-          cp root-application.yaml ../
-          echo "Root of repo:"
-          ls ../
+          pushd upstream
+          mv root-application.yaml ../
           ./render.sh
-          cp -r rendered-manifests/ ../
+          mv -r rendered-manifests/ ../
+          popd
+          rm -rf upstream
 
       - name: Create Pull Request for rendered manifests
         uses: peter-evans/create-pull-request@v6
