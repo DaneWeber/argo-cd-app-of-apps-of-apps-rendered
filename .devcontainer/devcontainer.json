@@ -1,0 +1,50 @@
+{
+	"name": "workshop-environment",
+	"image": "quay.io/akuity/argo-cd-learning-assets/akuity-devcontainer:0.2.5",
+
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"enableNonRootDocker": "true",
+			"moby": "true"
+		}
+	},
+	
+	"hostRequirements": {
+		"cpus": 4
+	},
+	"postCreateCommand": "/bin/bash -c .devcontainer/scripts/post-create.sh",
+
+	"postStartCommand": "/bin/bash -c .devcontainer/scripts/post-start.sh",
+
+	"forwardPorts": [30179, 30180, 30181, 30182, 30280],
+	"portsAttributes": {
+		"30179": {
+			"label": "Argo CD Dashboard",
+			"protocol": "https"
+		},
+		"30180": {
+			"label": "GOBG Dev",
+			"protocol": "http"
+		},
+		"30181": {
+			"label": "GOBG Stage",
+			"protocol": "http"
+		},
+		"30182": {
+			"label": "GOBG Prod",
+			"protocol": "http"
+		},
+		"30280": {
+			"label": "Simple GO Prod",
+			"protocol": "http"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"streetsidesoftware.code-spell-checker-british-english"
+			]
+		}
+	}
+}
