@@ -29,10 +29,11 @@ jobs:
 
       - name: Render Helm templates
         run: |
+          rm -rf rendered-manifests
           cd upstream
-          ./render.sh
-          cp -r rendered-manifests ../
           cp root-application.yaml ../
+          ./render.sh
+          cp -r rendered-manifests/ ../
 
       - name: Create Pull Request for rendered manifests
         uses: peter-evans/create-pull-request@v6
