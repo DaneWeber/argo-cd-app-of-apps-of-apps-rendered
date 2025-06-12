@@ -1,0 +1,32 @@
+---
+name: Lint and Validate Helm Chart
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    types: [synchronize, opened, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
+      - name: Set up chart-testing for yamllint and yq
+        uses: helm/chart-testing-action@v2.7.0
+
+      - name: Validate with yq
+        run: |
+          find . \( -name '*.yaml' -o -name '*.yml' \) | while read -r file; do
+            echo "::group::yq eval $file"
+            yq eval "$file"
+            echo "::endgroup::"
+          done
+
+      - name: Lint with yamllint
+        run: |
+          yamllint .
+          yamllint --list-files .
