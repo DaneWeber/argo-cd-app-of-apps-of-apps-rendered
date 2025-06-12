@@ -1,0 +1,20 @@
+---
+# Source: child-apps-in-other-namespaces/templates/child-application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: collab-board-gitops-prod-east
+spec:
+  destination:
+    namespace: collab-board-gitops-prod-east
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: https://github.com/example/collab-board-manifests
+    targetRevision: main
+    path: applications/prod
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true

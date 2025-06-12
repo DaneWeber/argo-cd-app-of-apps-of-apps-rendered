@@ -1,0 +1,280 @@
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: case-management-devtest-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: case-management-gitops-devtest-east
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/case-management/devtest-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: case-management-devtest-west
+  namespace: argocd
+spec:
+  destination:
+    namespace: case-management-gitops-devtest-west
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/case-management/devtest-west/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: case-management-prod-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: case-management-gitops-prod-east
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/case-management/prod-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: case-management-prod-west
+  namespace: argocd
+spec:
+  destination:
+    namespace: case-management-gitops-prod-west
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/case-management/prod-west/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: collab-board-devtest-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: collab-board-gitops-devtest-east
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/collab-board/devtest-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: collab-board-devtest-west
+  namespace: argocd
+spec:
+  destination:
+    namespace: collab-board-gitops-devtest-west
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/collab-board/devtest-west/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: collab-board-prod-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: collab-board-gitops-prod-east
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/collab-board/prod-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: collab-board-prod-west
+  namespace: argocd
+spec:
+  destination:
+    namespace: collab-board-gitops-prod-west
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/collab-board/prod-west/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hanny-devtest-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: cicd-gitops
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/hanny/devtest-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hanny-prod-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: cicd-gitops
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/hanny/prod-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: messaging-devtest-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: messaging-gitops-devtest-east
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/messaging/devtest-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: messaging-devtest-west
+  namespace: argocd
+spec:
+  destination:
+    namespace: messaging-gitops-devtest-west
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/messaging/devtest-west/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: messaging-prod-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: messaging-gitops-prod-east
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/messaging/prod-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: messaging-prod-west
+  namespace: argocd
+spec:
+  destination:
+    namespace: messaging-gitops-prod-west
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/messaging/prod-west/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
