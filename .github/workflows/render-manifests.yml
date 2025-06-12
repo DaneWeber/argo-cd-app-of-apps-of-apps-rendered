@@ -31,7 +31,9 @@ jobs:
         run: |
           rm -rf rendered-manifests
           cd upstream
+          ls
           cp root-application.yaml ../
+          ls ../
           ./render.sh
           cp -r rendered-manifests/ ../
 
