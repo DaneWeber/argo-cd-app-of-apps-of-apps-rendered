@@ -1,0 +1,20 @@
+---
+# Source: child-apps-in-other-namespaces/templates/child-application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: cicd-gitops-devtest
+spec:
+  destination:
+    namespace: cicd-gitops-devtest
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: https://github.com/example/demo-app-manifests
+    targetRevision: main
+    path: applications
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true

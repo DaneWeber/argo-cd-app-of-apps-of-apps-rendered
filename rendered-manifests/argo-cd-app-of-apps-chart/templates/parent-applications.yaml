@@ -163,6 +163,46 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: demo-app-devtest-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: cicd-gitops-devtest
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/demo-app/devtest-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-app-prod-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: cicd-gitops-prod
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/demo-app/prod-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: hanny-devtest-east
   namespace: argocd
 spec:
