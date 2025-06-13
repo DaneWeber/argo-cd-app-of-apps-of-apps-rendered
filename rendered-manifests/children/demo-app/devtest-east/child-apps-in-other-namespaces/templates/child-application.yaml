@@ -4,15 +4,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app-of-apps
-  namespace: case-management-gitops-prod-east
+  namespace: cicd-gitops-devtest
 spec:
   destination:
-    namespace: case-management-gitops-prod-east
+    namespace: cicd-gitops-devtest
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: https://github.com/example/case-management-manifests
+    repoURL: https://github.com/example/demo-app-manifests
     targetRevision: main
-    path: applications/prod
+    path: applications
   project: default
   syncPolicy:
     automated:
