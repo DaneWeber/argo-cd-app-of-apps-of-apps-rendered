@@ -6,6 +6,7 @@ echo "post-create start" >> ~/.status.log
 k3d cluster delete dev | tee -a ~/.status.log
 k3d cluster delete platform | tee -a ~/.status.log
 k3d cluster delete devtest-east | tee -a ~/.status.log
+k3d cluster delete prod-east | tee -a ~/.status.log
 k3d cluster delete managed | tee -a ~/.status.log
 
 ###################
@@ -54,6 +55,28 @@ helm install argocd argo/argo-cd \
   --create-namespace \
   --set server.service.type="NodePort" \
   --set server.service.nodePortHttps=31179 \
+  --set configs.cm."kustomize\.buildOptions"="--enable-helm" \
+  --set configs.cm."application\.sync\.impersonation\.enabled"="true" \
+  | tee -a  ~/.status.log 
+
+#####################
+# Prod-East Cluster #
+#####################
+# Install the K3D cluster for Argo CD
+k3d cluster create --config .devcontainer/manifests/k3d-prod-east.yaml --wait | tee -a ~/.status.log
+
+# Make sure we're on the right context
+kubectx k3d-prod-east | tee -a ~/.status.log
+
+# Install Argo CD using Helm
+helm repo add argo https://argoproj.github.io/argo-helm | tee -a  ~/.status.log 
+helm repo update | tee -a  ~/.status.log 
+helm install argocd argo/argo-cd \
+  --version 7.8.26 \
+  --namespace argocd \
+  --create-namespace \
+  --set server.service.type="NodePort" \
+  --set server.service.nodePortHttps=32179 \
   --set configs.cm."kustomize\.buildOptions"="--enable-helm" \
   --set configs.cm."application\.sync\.impersonation\.enabled"="true" \
   | tee -a  ~/.status.log 
