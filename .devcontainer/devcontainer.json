@@ -16,10 +16,18 @@
 
 	"postStartCommand": "/bin/bash -c .devcontainer/scripts/post-start.sh",
 
-	"forwardPorts": [30179, 30180, 30181, 30182, 30280],
+	"forwardPorts": [32179, 31179, 30179, 30180, 30181, 30182, 30280],
 	"portsAttributes": {
+		"32179": {
+			"label": "Prod - Argo CD Dashboard",
+			"protocol": "https"
+		},
+		"31179": {
+			"label": "DevTest - Argo CD Dashboard",
+			"protocol": "https"
+		},
 		"30179": {
-			"label": "Argo CD Dashboard",
+			"label": "Platform - Argo CD Dashboard",
 			"protocol": "https"
 		},
 		"30180": {
