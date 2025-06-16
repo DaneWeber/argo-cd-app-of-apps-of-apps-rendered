@@ -3,12 +3,52 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: archiver-devtest-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://172.17.0.2:6552
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/archiver/devtest-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: archiver-prod-east
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://172.17.0.2:6553
+  source:
+    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
+    targetRevision: main
+    path: rendered-manifests/children/archiver/prod-east/child-apps-in-other-namespaces/templates
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+---
+# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: case-management-devtest-east
   namespace: argocd
 spec:
   destination:
     namespace: case-management-gitops-devtest-east
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -28,7 +68,7 @@ metadata:
 spec:
   destination:
     namespace: case-management-gitops-devtest-west
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6562
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -48,7 +88,7 @@ metadata:
 spec:
   destination:
     namespace: case-management-gitops-prod-east
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -68,7 +108,7 @@ metadata:
 spec:
   destination:
     namespace: case-management-gitops-prod-west
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6563
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -88,7 +128,7 @@ metadata:
 spec:
   destination:
     namespace: collab-board-gitops-devtest-east
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -108,7 +148,7 @@ metadata:
 spec:
   destination:
     namespace: collab-board-gitops-devtest-west
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6562
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -128,7 +168,7 @@ metadata:
 spec:
   destination:
     namespace: collab-board-gitops-prod-east
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -148,7 +188,7 @@ metadata:
 spec:
   destination:
     namespace: collab-board-gitops-prod-west
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6563
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -168,7 +208,7 @@ metadata:
 spec:
   destination:
     namespace: cicd-gitops-devtest
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -188,7 +228,7 @@ metadata:
 spec:
   destination:
     namespace: cicd-gitops-prod
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -208,7 +248,7 @@ metadata:
 spec:
   destination:
     namespace: cicd-gitops-devtest
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -228,7 +268,7 @@ metadata:
 spec:
   destination:
     namespace: cicd-gitops-prod
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -248,7 +288,7 @@ metadata:
 spec:
   destination:
     namespace: messaging-gitops-devtest-east
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -268,7 +308,7 @@ metadata:
 spec:
   destination:
     namespace: messaging-gitops-devtest-west
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6562
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -288,7 +328,7 @@ metadata:
 spec:
   destination:
     namespace: messaging-gitops-prod-east
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
@@ -308,7 +348,7 @@ metadata:
 spec:
   destination:
     namespace: messaging-gitops-prod-west
-    server: https://kubernetes.default.svc
+    server: https://172.17.0.2:6563
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps
     targetRevision: main
