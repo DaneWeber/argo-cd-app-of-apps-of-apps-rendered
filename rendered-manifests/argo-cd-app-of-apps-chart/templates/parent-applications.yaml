@@ -23,46 +23,6 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: archiver-prod-east
-  namespace: argocd
-spec:
-  destination:
-    namespace: argocd
-    server: https://172.17.0.2:6553
-  source:
-    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
-    path: rendered-manifests/children/archiver/prod-east/child-apps-in-other-namespaces/templates
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
----
-# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: case-management-devtest-east
-  namespace: argocd
-spec:
-  destination:
-    namespace: case-management-gitops-devtest-east
-    server: https://172.17.0.2:6552
-  source:
-    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
-    path: rendered-manifests/children/case-management/devtest-east/child-apps-in-other-namespaces/templates
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
----
-# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: case-management-devtest-west
   namespace: argocd
 spec:
@@ -113,26 +73,6 @@ spec:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
     targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/case-management/prod-west/child-apps-in-other-namespaces/templates
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
----
-# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: collab-board-devtest-east
-  namespace: argocd
-spec:
-  destination:
-    namespace: collab-board-gitops-devtest-east
-    server: https://172.17.0.2:6552
-  source:
-    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
-    path: rendered-manifests/children/collab-board/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
     automated:
@@ -273,26 +213,6 @@ spec:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
     targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/hanny/prod-east/child-apps-in-other-namespaces/templates
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
----
-# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: messaging-devtest-east
-  namespace: argocd
-spec:
-  destination:
-    namespace: messaging-gitops-devtest-east
-    server: https://172.17.0.2:6552
-  source:
-    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
-    path: rendered-manifests/children/messaging/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
     automated:

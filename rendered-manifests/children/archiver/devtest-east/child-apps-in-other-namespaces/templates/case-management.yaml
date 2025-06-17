@@ -3,16 +3,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-apps
-  namespace: argocd
+  name: app-of-apps-case-management
+  namespace: case-management-gitops-devtest-east
 spec:
   destination:
-    namespace: argocd
+    namespace: case-management-gitops-devtest-east
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: https://github.com/DaneWeber/gitops-masterclass-applications
+    repoURL: https://github.com/example/case-management-manifests
     targetRevision: main
-    path: example
+    path: applications/devtest
   project: default
   syncPolicy:
     automated:
