@@ -3,16 +3,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-apps
-  namespace: collab-board-gitops-devtest-east
+  name: app-of-apps-devtest-east
+  namespace: argocd
 spec:
   destination:
-    namespace: collab-board-gitops-devtest-east
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: https://github.com/example/collab-board-manifests
+    repoURL: https://github.com/DaneWeber/gitops-masterclass-applications
     targetRevision: main
-    path: applications/devtest
+    path: example
   project: default
   syncPolicy:
     automated:

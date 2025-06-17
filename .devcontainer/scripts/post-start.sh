@@ -92,9 +92,9 @@ kubectl apply -f .devcontainer/manifests/argocd-configupdate.yaml | tee -a  ~/.s
 # Platform Cluster Setup on Start #
 ###################################
 
-# Verify that the DevTest-East cluster exists
-if [[ $(k3d cluster list | grep devtest-east | wc -l) -eq 0 ]]; then
-    echo "DevTest-East cluster not found. Exiting." | tee -a  ~/.status.log
+# Verify that the Platform cluster exists
+if [[ $(k3d cluster list | grep platform | wc -l) -eq 0 ]]; then
+    echo "Platform cluster not found. Exiting." | tee -a  ~/.status.log
     exit 1
 fi
 
@@ -131,6 +131,11 @@ argouri="localhost:30179"
 argonewpass="password"
 argocd login --insecure --username ${argouser:=admin} --password ${argopass} --grpc-web ${argouri} | tee -a  ~/.status.log 
 argocd account --insecure update-password --insecure --current-password ${argopass} --new-password ${argonewpass} | tee -a  ~/.status.log 
+
+######### Add External Clusters
+argocd cluster add -y k3d-devtest-east | tee -a  ~/.status.log
+argocd cluster add -y k3d-prod-east | tee -a  ~/.status.log
+argocd cluster list | tee -a  ~/.status.log
 
 # Patch URL value. Probably can do this via helm in the "post-create.sh" script. PRs are welcome
 

@@ -3,14 +3,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-apps
-  namespace: messaging-gitops-devtest-east
+  name: app-of-apps-collab-board
+  namespace: collab-board-gitops-devtest-east
 spec:
   destination:
-    namespace: messaging-gitops-devtest-east
+    namespace: collab-board-gitops-devtest-east
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: https://github.com/example/messaging-manifests
+    repoURL: https://github.com/example/collab-board-manifests
     targetRevision: main
     path: applications/devtest
   project: default
