@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: >-
       https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/argo-cd-app-of-apps-chart/templates
   destination:
     server: 'https://kubernetes.default.svc'

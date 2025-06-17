@@ -11,7 +11,7 @@ spec:
     server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/archiver/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -31,7 +31,7 @@ spec:
     server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/archiver/prod-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -51,7 +51,7 @@ spec:
     server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/case-management/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -71,7 +71,7 @@ spec:
     server: https://172.17.0.2:6562
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/case-management/devtest-west/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -91,7 +91,7 @@ spec:
     server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/case-management/prod-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -111,7 +111,7 @@ spec:
     server: https://172.17.0.2:6563
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/case-management/prod-west/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -131,7 +131,7 @@ spec:
     server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/collab-board/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -151,7 +151,7 @@ spec:
     server: https://172.17.0.2:6562
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/collab-board/devtest-west/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -171,7 +171,7 @@ spec:
     server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/collab-board/prod-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -191,7 +191,7 @@ spec:
     server: https://172.17.0.2:6563
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/collab-board/prod-west/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -211,7 +211,7 @@ spec:
     server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/demo-app/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -231,7 +231,7 @@ spec:
     server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/demo-app/prod-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -251,7 +251,7 @@ spec:
     server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/hanny/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -271,7 +271,7 @@ spec:
     server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/hanny/prod-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -291,7 +291,7 @@ spec:
     server: https://172.17.0.2:6552
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/messaging/devtest-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -311,7 +311,7 @@ spec:
     server: https://172.17.0.2:6562
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/messaging/devtest-west/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -331,7 +331,7 @@ spec:
     server: https://172.17.0.2:6553
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/messaging/prod-east/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
@@ -351,7 +351,7 @@ spec:
     server: https://172.17.0.2:6563
   source:
     repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
+    targetRevision: update/rendered-manifests-b8e2e8b2bb3558a6a9b28efb4e08501ec775a1d7
     path: rendered-manifests/children/messaging/prod-west/child-apps-in-other-namespaces/templates
   project: default
   syncPolicy:
