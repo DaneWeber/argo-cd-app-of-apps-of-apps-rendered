@@ -23,6 +23,11 @@ jobs:
           git clone https://github.com/${UPSTREAM_REPO}.git upstream
           cd upstream
           git checkout ${{ github.event.client_payload.sha }}
+          # Capture commit message and PR number for later use
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          PR_NUMBER=$(echo "$COMMIT_MESSAGE" | grep -oP '\(#(\d+)\) *$' | grep -oP '\d+')
+          echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
 
       - name: Set up Helm
         uses: azure/setup-helm@v4
@@ -43,14 +48,17 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b update/rendered-manifests-${{ github.event.client_payload.sha }}
           git add rendered-manifests
-          git commit -m "Update rendered Argo CD manifests from upstream ${{ github.event.client_payload.sha }}"
+          git commit -m "render: $COMMIT_MESSAGE ${{ github.event.client_payload.sha }}"
           git push origin update/rendered-manifests-${{ github.event.client_payload.sha }}
 
       - name: Create Pull Request for rendered manifests
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_TITLE: Update rendered Argo CD manifests - ${{ github.event.client_payload.sha }}
-          PR_BODY: This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}.
+          PR_TITLE: render -- ${{ env.COMMIT_MESSAGE }} ${{ github.event.client_payload.sha }}
+          PR_BODY: |
+            This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}.
+
+            https://github.com/${{ env.UPSTREAM_REPO }}/pull/${{ env.PR_NUMBER }}
           API_URL: https://api.github.com/repos/${{ github.repository }}/pulls
           HEAD: update/rendered-manifests-${{ github.event.client_payload.sha }}
           BASE: ${{ github.event.repository.default_branch || 'main' }}
