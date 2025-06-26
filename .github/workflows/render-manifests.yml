@@ -25,7 +25,7 @@ jobs:
           git checkout ${{ github.event.client_payload.sha }}
           # Capture commit message and PR number for later use
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          PR_NUMBER=$(echo "$COMMIT_MESSAGE" | grep -oP '\(#(\d+)\) *$' | grep -oP '\d+')
+          PR_NUMBER=$(echo "$COMMIT_MESSAGE" | grep -oP '\(#(\d+)\) *$' | grep -oP '\d+' || true)
           echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
 
