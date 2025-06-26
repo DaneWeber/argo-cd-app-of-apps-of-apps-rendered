@@ -37,15 +37,27 @@ jobs:
           popd
           rm -rf upstream
 
+      - name: Commit and push rendered manifests
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b update/rendered-manifests-${{ github.event.client_payload.sha }}
+          git add rendered-manifests
+          git commit -m "Update rendered Argo CD manifests from upstream ${{ github.event.client_payload.sha }}"
+          git push origin update/rendered-manifests-${{ github.event.client_payload.sha }}
+
       - name: Create Pull Request for rendered manifests
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "Update rendered Argo CD manifests from upstream ${{ github.event.client_payload.sha }}"
-          branch: update/rendered-manifests-${{ github.event.client_payload.sha }}
-          title: "Update rendered Argo CD manifests - ${{ github.event.client_payload.sha }}"
-          body: >
-            This PR updates the rendered Argo CD manifests
-            based on upstream commit ${{ github.event.client_payload.sha }}.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TITLE: Update rendered Argo CD manifests - ${{ github.event.client_payload.sha }}
+          PR_BODY: This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}.
+          API_URL: https://api.github.com/repos/${{ github.repository }}/pulls
+          HEAD: update/rendered-manifests-${{ github.event.client_payload.sha }}
+          BASE: ${{ github.event.repository.default_branch || 'main' }}
+        run: |
+          curl -s -X POST -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "$API_URL" \
+            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$HEAD\",\"base\":\"$BASE\"}"
 
       - name: Upload rendered manifests as artifact
         uses: actions/upload-artifact@v4
