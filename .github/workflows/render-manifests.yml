@@ -63,6 +63,7 @@ jobs:
           HEAD: update/rendered-manifests-${{ github.event.client_payload.sha }}
           BASE: ${{ github.event.repository.default_branch || 'main' }}
         run: |
+          echo "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$HEAD\",\"base\":\"$BASE\"}"
           curl -s -X POST -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
             "$API_URL" \
             -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$HEAD\",\"base\":\"$BASE\"}"
