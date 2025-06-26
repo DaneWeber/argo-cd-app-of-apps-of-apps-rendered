@@ -49,7 +49,7 @@ jobs:
           git checkout -b update/rendered-manifests-${{ github.event.client_payload.sha }}
           git add rendered-manifests
           git commit -m "render: $COMMIT_MESSAGE ${{ github.event.client_payload.sha }}"
-          git push origin update/rendered-manifests-${{ github.event.client_payload.sha }}
+          git push --force origin update/rendered-manifests-${{ github.event.client_payload.sha }}
 
       - name: Create Pull Request for rendered manifests
         env:
