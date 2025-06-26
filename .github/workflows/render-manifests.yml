@@ -13,7 +13,7 @@ jobs:
   render:
     runs-on: ubuntu-latest
     env:
-      UPSTREAM_REPO: DaneWeber/argo-cd-app-of-apps-of-apps
+      UPSTREAM_REPO: DaneWeber/argo-cd-app-of-apps
     steps:
       - name: Checkout downstream repository
         uses: actions/checkout@v4
@@ -56,17 +56,25 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: render -- ${{ env.COMMIT_MESSAGE }} ${{ github.event.client_payload.sha }}
           PR_BODY: |
-            This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}. \
-            \n\n \
+            This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}.
+
             https://github.com/${{ env.UPSTREAM_REPO }}/pull/${{ env.PR_NUMBER }}
           API_URL: https://api.github.com/repos/${{ github.repository }}/pulls
           HEAD: update/rendered-manifests-${{ github.event.client_payload.sha }}
           BASE: ${{ github.event.repository.default_branch || 'main' }}
         run: |
-          echo "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$HEAD\",\"base\":\"$BASE\"}"
+          cat <<EOF > pr.json
+          {
+            "title": "${PR_TITLE}",
+            "body": "${PR_BODY}",
+            "head": "${HEAD}",
+            "base": "${BASE}"
+          }
+          EOF
+          cat pr.json
           curl -s -X POST -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
             "$API_URL" \
-            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"$HEAD\",\"base\":\"$BASE\"}"
+            -d @pr.json
 
       - name: Upload rendered manifests as artifact
         uses: actions/upload-artifact@v4
