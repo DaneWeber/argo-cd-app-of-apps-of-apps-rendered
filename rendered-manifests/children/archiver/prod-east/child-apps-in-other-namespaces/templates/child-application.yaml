@@ -1,0 +1,21 @@
+---
+# Source: child-apps-in-other-namespaces/templates/child-application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: https://github.com/DaneWeber/gitops-masterclass-applications
+    targetRevision: main
+    path: example
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+      allowEmpty: false
