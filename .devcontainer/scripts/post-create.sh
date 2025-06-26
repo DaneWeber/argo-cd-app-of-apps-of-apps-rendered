@@ -40,7 +40,7 @@ helm install argocd argo/argo-cd \
   --set server.service.type="NodePort" \
   --set server.service.nodePortHttps=30179 \
   --set configs.cm."kustomize\.buildOptions"="--enable-helm" \
-  --set configs.cm."application\.sync\.impersonation\.enabled"="true" \
+  --set configs.cm."application\.sync\.impersonation\.enabled"="false" \
   | tee -a  ~/.status.log 
 
 ########################
@@ -65,7 +65,7 @@ helm install argocd argo/argo-cd \
   --set server.service.type="NodePort" \
   --set server.service.nodePortHttps=31179 \
   --set configs.cm."kustomize\.buildOptions"="--enable-helm" \
-  --set configs.cm."application\.sync\.impersonation\.enabled"="true" \
+  --set configs.cm."application\.sync\.impersonation\.enabled"="false" \
   | tee -a  ~/.status.log 
 
 #####################
@@ -90,7 +90,7 @@ helm install argocd argo/argo-cd \
   --set server.service.type="NodePort" \
   --set server.service.nodePortHttps=32179 \
   --set configs.cm."kustomize\.buildOptions"="--enable-helm" \
-  --set configs.cm."application\.sync\.impersonation\.enabled"="true" \
+  --set configs.cm."application\.sync\.impersonation\.enabled"="false" \
   | tee -a  ~/.status.log 
 
 echo "post-create complete" >> ~/.status.log
