@@ -56,8 +56,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_TITLE: render -- ${{ env.COMMIT_MESSAGE }} ${{ github.event.client_payload.sha }}
           PR_BODY: |
-            This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}.
-
+            This PR updates the rendered Argo CD manifests based on upstream commit ${{ github.event.client_payload.sha }}. \
+            \n\n \
             https://github.com/${{ env.UPSTREAM_REPO }}/pull/${{ env.PR_NUMBER }}
           API_URL: https://api.github.com/repos/${{ github.repository }}/pulls
           HEAD: update/rendered-manifests-${{ github.event.client_payload.sha }}
