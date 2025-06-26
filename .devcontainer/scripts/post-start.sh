@@ -88,6 +88,11 @@ argocd account --insecure update-password --insecure --current-password ${argopa
 # Update Argo CD to use cluster-admin service account for sync operations in the "default" project
 kubectl apply -f .devcontainer/manifests/argocd-configupdate.yaml | tee -a  ~/.status.log
 
+######### Add Namespaces to Cluster
+kubectl create namespace case-management-gitops-devtest-east
+kubectl create namespace collab-board-gitops-devtest-east
+kubectl create namespace messaging-gitops-devtest-east
+
 ###################################
 # Platform Cluster Setup on Start #
 ###################################
@@ -111,6 +116,11 @@ kubectx k3d-platform | tee -a ~/.status.log
 
 # Wait for Argo CD to be ready
 kubectl rollout status -n argocd sts/argocd-application-controller | tee -a  ~/.status.log
+
+######### Add Namespaces to Cluster
+kubectl create namespace case-management-gitops-prod-east
+kubectl create namespace collab-board-gitops-prod-east
+kubectl create namespace messaging-gitops-prod-east
 
 # Wait for the port to be ready
 counter=0
