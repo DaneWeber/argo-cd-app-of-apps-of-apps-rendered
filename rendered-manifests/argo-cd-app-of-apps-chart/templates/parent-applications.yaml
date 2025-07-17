@@ -263,26 +263,6 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hanny-prod-east
-  namespace: argocd
-spec:
-  destination:
-    namespace: cicd-gitops-prod
-    server: https://172.17.0.2:6553
-  source:
-    repoURL: https://github.com/DaneWeber/argo-cd-app-of-apps-of-apps-rendered
-    targetRevision: main
-    path: rendered-manifests/children/hanny/prod-east/child-apps-in-other-namespaces/templates
-  project: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
----
-# Source: argo-cd-app-of-apps-chart/templates/parent-applications.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: messaging-devtest-east
   namespace: argocd
 spec:
